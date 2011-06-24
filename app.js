@@ -118,9 +118,8 @@ function build_obj( res, req, skip_date_update ) {
 };
 
 setTimeout( function() {
-	console.log( "Updating all dates..." );
 	build_obj();
-}, 21600000 );
+}, 86400000 );
 
 function build_hud_query( obj ) {
 	var req_string = [];
@@ -160,26 +159,21 @@ app.post( '/', function( req, res ) {
 	build_obj( res, req, true );
 });
 
-app.post( '/prices', function( req, res ) {
-	res.write( "[" );
-	for ( var v = 0, l = req.body.prices.length; v < l; v++ ) {
-		client.hvals( req.body.prices[v], function( errs, replies ) {
-			var o = {};
-			o.id = req.body.prices[v];
-			if ( req.body.day_offset > 0 ) {
-				o.orig = replies[ replies.length - req.body.day_offset];
-			} else {
-				o.orig = replies[0];
-			}
-			o.latest = replies[ replies.length -1 ];
-			console.log( "Min: %s, Max: %s", o.orig, o.latest );
-			res.write( JSON.stringify(o) );
-		});
-	}
-	setTimeout( function() {
-		res.write( "]" );
-		res.end();
-	}, 3000 );
+app.post( '/price', function( req, res ) {
+	// res.write( "[" );
+	client.hvals( req.body.id, function( errs, replies ) {
+		var o = {};
+		o.id = req.body.id;
+
+		if ( req.body.offset > 0 ) {
+			o.orig = replies[ replies.length - req.body.offset];
+		} else {
+			o.orig = replies[0];
+		}
+
+		o.latest = replies[ replies.length -1 ];
+		res.send( JSON.stringify( o ) );
+	});
 });
 
 app.listen(3000);

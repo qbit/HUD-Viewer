@@ -10,6 +10,7 @@ $( document ).ready( function() {
 
 		e.preventDefault();
 		var data =  $( '#hudform' ).serialize();
+		var offset = $( '#offset' ).val();
 		$.ajax( {
 			type: "POST",
 			url: "/",
@@ -19,7 +20,7 @@ $( document ).ready( function() {
 				var pprice_ids = [];
 
 
-				var table = $( '<table><thead><th>Property Case</th><th>Address</th><th>City</th><th>State</th><th>Zip Code</th><th>County</th><th>Price</th><th>Previous Price</th><th>Bed</th><th>Bath</th><th>Square Footage</th><th>Year Built</th><th>As Is Value</th><th>FHA Financing</th><th>List Date</th><th>Bid Open Date</th><th>Listing Period</th><th>Status</th></thead>' );
+				var table = $( '<table><thead><th>Property Case</th><th>Address</th><th>City</th><th>State</th><th>Zip Code</th><th>County</th><th>Current Price</th><th>Previous Price</th><th>Bed</th><th>Bath</th><th>Square Footage</th><th>Year Built</th><th>As Is Value</th><th>FHA Financing</th><th>List Date</th><th>Bid Open Date</th><th>Listing Period</th><th>Status</th></thead>' );
 				table.attr( 'id', 'result' );
 
 				for ( var a in d ) {
@@ -48,22 +49,41 @@ $( document ).ready( function() {
 					table.append( tr );
 				}
 				$( '#view' ).append( table );
-				$( '#result' ).tablesorter();
 
 				var o = {};
-				o.prices = pprice_ids;
-				o.day_offset = data.offset || 0;
 				$( '#msg' ).html( 'Fetching Price data.<br/><br/><img src="/images/loading.gif"/>' );
-				$.ajax( {
-					type: "POST",
-					url: "/prices",
-					data: o,
-					success: function( d ) {
+				var count = 0;
+				for ( var i = 0, l = pprice_ids.length; i < l; i++ ) {
+					var o = {};
+					o.id = pprice_ids[i];
+					o.offset = offset;
+					$.ajax( {
+						type: "POST",
+						url: "/price",
+						data: o,
+						success: function( d ) {
 
-						for ( var pd in d ) {
-							console.log( d[pd].orig );
+							d = JSON.parse( d );
+							var css;
+							if ( d.orig < d.latest ) {
+								css = "increased";
+							} 
+							if ( d.orig > d.latest ) {
+								css = "reduced";
+							}
+
+							$( '#' + d.id + 'pprice' ).html( d.orig );
+							$( '#' + d.id + 'pprice' ).parent().addClass( css );
+							count++;
 						}
+					});
+				}
 
+				var len = pprice_ids.length;
+				var update_iv = setInterval( function() {
+					if ( len === count ) {
+						clearInterval( update_iv );
+						$( '#result' ).tablesorter();
 						$( '#overlay' ).removeClass( 'fullscreen' );
 						$( '#overlay' ).hide();
 						$( '#msg' ).hide( 'slow' );
