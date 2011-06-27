@@ -118,6 +118,7 @@ function build_obj( res, req, skip_date_update ) {
 };
 
 setTimeout( function() {
+	console.log( "Updating full list" );
 	build_obj();
 }, 86400000 );
 

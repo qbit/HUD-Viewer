@@ -20,7 +20,7 @@ $( document ).ready( function() {
 				var pprice_ids = [];
 
 
-				var table = $( '<table><thead><th>Property Case</th><th>Address</th><th>City</th><th>State</th><th>Zip Code</th><th>County</th><th>Current Price</th><th>Previous Price</th><th>Bed</th><th>Bath</th><th>Square Footage</th><th>Year Built</th><th>As Is Value</th><th>FHA Financing</th><th>List Date</th><th>Bid Open Date</th><th>Listing Period</th><th>Status</th></thead>' );
+				var table = $( '<table><thead><th>Property Case</th><th>Address</th><th>City</th><th>State</th><th>Zip Code</th><th>County</th><th>Current Price</th><th>Previous Price</th><th>Price Delta</th><th>Bed</th><th>Bath</th><th>Square Footage</th><th>Year Built</th><th>As Is Value</th><th>FHA Financing</th><th>List Date</th><th>Bid Open Date</th><th>Listing Period</th><th>Status</th></thead>' );
 				table.attr( 'id', 'result' );
 
 				for ( var a in d ) {
@@ -36,6 +36,7 @@ $( document ).ready( function() {
 					tr.append( $( '<td>' ).html( d[a].county ));
 					tr.append( $( '<td>' ).html( d[a].price ));
 					tr.append( $( '<td>' ).html( d[a].pprice ).attr( 'id', d[a].id + 'pprice' ) );
+					tr.append( $( '<td>' ).html( 0 ).attr( 'id', d[a].id + 'delta' ) );
 					tr.append( $( '<td>' ).html( d[a].bed ));
 					tr.append( $( '<td>' ).html( d[a].bath ));
 					tr.append( $( '<td>' ).html( d[a].sqft ));
@@ -63,6 +64,7 @@ $( document ).ready( function() {
 						data: o,
 						success: function( d ) {
 
+							var delta = 0;
 							d = JSON.parse( d );
 							var css;
 							if ( d.orig < d.latest ) {
@@ -70,9 +72,11 @@ $( document ).ready( function() {
 							} 
 							if ( d.orig > d.latest ) {
 								css = "reduced";
+								delta = d.orig - d.latest;
 							}
 
 							$( '#' + d.id + 'pprice' ).html( d.orig );
+							$( '#' + d.id + 'delta' ).html( delta );
 							$( '#' + d.id + 'pprice' ).parent().addClass( css );
 							count++;
 						}
