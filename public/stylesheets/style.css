@@ -38,6 +38,7 @@ table thead tr {
 
 td {
 	border: 1px solid black;
+	text-align: center;
 }
 
 #overlay{ 
@@ -76,4 +77,8 @@ td {
 
 .increase {
 	background-color: #FF6600
+}
+
+.right {
+	text-align: right;
 }

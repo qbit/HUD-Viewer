@@ -68,6 +68,7 @@ function build_obj( res, req, skip_date_update ) {
 	}
 
 	var http_req = http.get( hud_query, function( http_res ) {
+		console.log( "Status Code from HUD: %s", http_res.statusCode );
 		http_res.on( 'data', function( chunk ) {
 			data.push( chunk.toString() );
 		}).on( 'error', function( e ) {
