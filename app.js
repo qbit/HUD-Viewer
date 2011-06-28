@@ -1,4 +1,5 @@
 var redis = require( "redis" ),
+	fs = require( 'fs' ),
 	client = redis.createClient(),
 	http = require( 'http' ),
 	express = require('express'),
@@ -30,11 +31,15 @@ var url_opts = {
 	Status: "0"
 }
 
+var logger_opts = {
+	stream: fs.createWriteStream( './logs/requests.log' )
+};
+
 app.configure(function(){
   app.set( 'views', __dirname + '/views' );
   app.set( 'view engine', 'ejs' );
   app.use( express.bodyParser() );
-  // app.use( express.logger() );
+  app.use( express.logger( logger_opts ) );
   app.use( express.methodOverride() );
   app.use( app.router );
   app.use( express.static(__dirname + '/public') );
@@ -123,6 +128,7 @@ setTimeout( function() {
 	console.log( "Updating full list" );
 	build_obj();
 }, 86400000 );
+// }, 3000 );
 
 function build_hud_query( obj ) {
 	var req_string = [];
