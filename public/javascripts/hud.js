@@ -1,4 +1,10 @@
 $( document ).ready( function() {
+
+	$( '#hide' ).click( function() {
+		$( '.normal' ).remove();
+		$( '#result' ).trigger( "update" ).trigger( "sorton").trigger("appendCache").trigger("applyWidgets");
+	});
+
 	$( '#msg' ).hide();
 	$( '#hudform' ).submit( function( e ) {
 
@@ -66,13 +72,18 @@ $( document ).ready( function() {
 
 							var delta = 0;
 							d = JSON.parse( d );
-							var css;
+							var css = "normal";
+
+							d.orig = parseInt( d.orig, 10 );
+							d.latest = parseInt( d.latest, 10 );
+
 							if ( d.orig < d.latest ) {
 								css = "increased";
+								delta = d.orig - d.latest;
 							} 
 							if ( d.orig > d.latest ) {
 								css = "reduced";
-								delta = d.orig - d.latest;
+								delta = d.latest - d.orig;
 							}
 
 							$( '#' + d.id + 'pprice' ).html( d.orig );
