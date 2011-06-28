@@ -71,11 +71,15 @@ td {
 	padding-top: 30px;
 }
 
+.normal {
+	background-color: white;
+}
+
 .reduced {
 	background-color: #CCFF66;
 }
 
-.increase {
+.increased {
 	background-color: #FF6600
 }
 
