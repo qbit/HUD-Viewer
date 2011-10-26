@@ -1,9 +1,9 @@
 {
-    "name": "application-name"
-  , "version": "0.0.1"
+    "name": "hud-viewer"
+  , "version": "1.0.0"
   , "private": true
   , "dependencies": {
-      "express": "2.3.11"
+      "express": "~2.5.0"
     , "ejs": ">= 0.0.1"
   }
 }
