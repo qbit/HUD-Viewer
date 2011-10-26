@@ -91,6 +91,23 @@ function build_obj( res, req, skip_date_update ) {
 					var parts = s[i].split( "<td>" );
 
 					var z = {};
+					// <th>Property Case</th>
+					// <th>Address</th>
+					// <th>City</th>
+					// <th>State</th>
+					// <th>Zip Code</th>
+					// <th>County</th>
+					// <th>Price</th>
+					// <th>Bed</th>
+					// <th>Bath</th>
+					// <th>Square Footage</th>
+					// <th>Year Built</th>
+					// <th>As Is Value</th>
+					// <th>FHA Financing</th>
+					// <th>List Date</th>
+					// <th>Bid Open Date</th>
+					// <th>Listing Period</th>
+					// <th>Status</th
 
 					z.id = parts[1].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
 					z.street = parts[2].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
@@ -106,9 +123,10 @@ function build_obj( res, req, skip_date_update ) {
 					z.yb = parts[11].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
 					z.aiv = parts[12].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
 					z.fha = parts[13].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
-					z.obd = parts[14].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
-					z.lp = parts[15].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
-					z.stat = parts[16].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
+					z.ld = parts[14].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
+					z.obd = parts[15].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
+					z.lp = parts[16].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
+					z.stat = parts[17].replace( /\t|\r|<td>|td>|<\/td>/g, ""  );
 
 					if ( ! skip_date_update ) client.hset( z.id, date, z.price );
 					// client.hset( z.id, date, z.price );
@@ -126,9 +144,18 @@ function build_obj( res, req, skip_date_update ) {
 
 setTimeout( function() {
 	console.log( "Updating full list" );
-	build_obj();
+	// need to check the time of day here
+
+	var d = new Date();
+
+	// if ( d.getHours() === 21 && d.getMinutes() === 0 ) {
+		build_obj();
+	// }
+// }, 60000 ); // every minute
+// }, 3600000 ); // one hour
 }, 86400000 );
-// }, 3000 );
+//},  ); // one day
+//}, 3000 );
 
 function build_hud_query( obj ) {
 	var req_string = [];

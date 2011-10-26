@@ -1,0 +1,214 @@
+info it worked if it ends with ok
+verbose cli [ 'node',
+verbose cli   '/usr/bin/npm',
+verbose cli   'link',
+verbose cli   'ejs',
+verbose cli   'express',
+verbose cli   'htmlparser',
+verbose cli   'redis' ]
+info using npm@1.0.15
+info using node@v0.4.11
+verbose config file /home/qbit/.npmrc
+verbose config file /usr/etc/npmrc
+info unbuild /home/qbit/hud/node_modules/ejs
+info unbuild /home/qbit/hud/node_modules/express
+info unbuild /home/qbit/hud/node_modules/htmlparser
+info unbuild /home/qbit/hud/node_modules/redis
+verbose link symlinking /usr/lib/node_modules/ejs to /home/qbit/hud/node_modules/ejs
+verbose link symlinking /usr/lib/node_modules/express to /home/qbit/hud/node_modules/express
+verbose link symlinking /usr/lib/node_modules/htmlparser to /home/qbit/hud/node_modules/htmlparser
+verbose link symlinking /usr/lib/node_modules/redis to /home/qbit/hud/node_modules/redis
+verbose mkdir done: /home/qbit/hud/node_modules 755
+info build /home/qbit/hud/node_modules/express
+info build /home/qbit/hud/node_modules/redis
+info build /home/qbit/hud/node_modules/htmlparser
+info build /home/qbit/hud/node_modules/ejs
+silly testEngine { name: 'express',
+silly testEngine   description: 'Sinatra inspired web development framework',
+silly testEngine   version: '2.5.0',
+silly testEngine   author: 
+silly testEngine    { name: 'TJ Holowaychuk',
+silly testEngine      email: 'tj@vision-media.ca' },
+silly testEngine   contributors: 
+silly testEngine    [ { name: 'TJ Holowaychuk',
+silly testEngine        email: 'tj@vision-media.ca' },
+silly testEngine      { name: 'Aaron Heckmann',
+silly testEngine        email: 'aaron.heckmann+github@gmail.com' },
+silly testEngine      { name: 'Ciaran Jessup', email: 'ciaranj@gmail.com' },
+silly testEngine      { name: 'Guillermo Rauch', email: 'rauchg@gmail.com' } ],
+silly testEngine   dependencies: 
+silly testEngine    { connect: '1.7.x',
+silly testEngine      mime: '>= 0.0.1',
+silly testEngine      qs: '>= 0.3.1',
+silly testEngine      mkdirp: '0.0.7' },
+silly testEngine   devDependencies: 
+silly testEngine    { 'connect-form': '0.2.1',
+silly testEngine      ejs: '0.4.2',
+silly testEngine      expresso: '0.9.2',
+silly testEngine      hamljs: '0.5.1',
+silly testEngine      jade: '0.16.2',
+silly testEngine      stylus: '0.13.0',
+silly testEngine      should: '0.3.2',
+silly testEngine      'express-messages': '0.0.2',
+silly testEngine      'node-markdown': '>= 0.0.1',
+silly testEngine      'connect-redis': '>= 0.0.1' },
+silly testEngine   keywords: [ 'framework', 'sinatra', 'web', 'rest', 'restful' ],
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/visionmedia/express.git' },
+silly testEngine   main: 'index',
+silly testEngine   bin: { express: './bin/express' },
+silly testEngine   scripts: { test: 'make test', prepublish: 'npm prune' },
+silly testEngine   engines: { node: '>= 0.4.1 < 0.7.0' },
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { file: '/home/qbit/hud/node_modules/express/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: false },
+silly testEngine   _id: 'express@2.5.0',
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.15',
+silly testEngine   _nodeVersion: 'v0.4.11',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/qbit/hud/node_modules/express/package.json
+verbose loadDefaults express@2.5.0
+info preinstall express@2.5.0
+silly testEngine { name: 'redis',
+silly testEngine   version: '0.6.7',
+silly testEngine   description: 'Redis client library',
+silly testEngine   author: { name: 'Matt Ranney', email: 'mjr@ranney.com' },
+silly testEngine   contributors: 
+silly testEngine    [ { name: 'Rick Olson' },
+silly testEngine      { name: 'Tim-Smart' },
+silly testEngine      { name: 'TJ Holowaychuk' },
+silly testEngine      { name: 'Orion Henry' },
+silly testEngine      { name: 'Hank Sims' },
+silly testEngine      { name: 'Aivo Paas' },
+silly testEngine      { name: 'Paul Carey' },
+silly testEngine      { name: 'Pieter Noordhuis' },
+silly testEngine      { name: 'Andy Ray' },
+silly testEngine      { name: 'Vladimir Dronnikov' },
+silly testEngine      { name: 'Dave Hoover' } ],
+silly testEngine   main: './index.js',
+silly testEngine   scripts: { test: 'node ./test.js' },
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/mranney/node_redis.git' },
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { file: '/home/qbit/hud/node_modules/redis/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: false },
+silly testEngine   _id: 'redis@0.6.7',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   engines: { node: '*' },
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.15',
+silly testEngine   _nodeVersion: 'v0.4.11',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /home/qbit/hud/node_modules/redis/package.json
+verbose loadDefaults redis@0.6.7
+info preinstall redis@0.6.7
+silly testEngine { name: 'htmlparser',
+silly testEngine   description: 'Forgiving HTML/XML/RSS Parser in JS for *both* Node and Browsers',
+silly testEngine   version: '1.7.3',
+silly testEngine   author: 
+silly testEngine    { name: 'Chris Winberry',
+silly testEngine      email: 'chris@winberry.net' },
+silly testEngine   contributors: [],
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/tautologistics/node-htmlparser.git' },
+silly testEngine   bugs: 
+silly testEngine    { email: 'chris@winberry.net',
+silly testEngine      url: 'http://github.com/tautologistics/node-htmlparser/issues' },
+silly testEngine   os: [ 'linux', 'darwin', 'freebsd', 'win32' ],
+silly testEngine   directories: { lib: './lib/' },
+silly testEngine   main: './lib/htmlparser',
+silly testEngine   engines: { node: '>=0.1.33' },
+silly testEngine   licenses: 
+silly testEngine    [ { type: 'MIT',
+silly testEngine        url: 'http://github.com/tautologistics/node-htmlparser/raw/master/LICENSE' } ],
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { file: '/home/qbit/hud/node_modules/htmlparser/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: false },
+silly testEngine   _id: 'htmlparser@1.7.3',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.15',
+silly testEngine   _nodeVersion: 'v0.4.11',
+silly testEngine   _defaultsLoaded: true,
+silly testEngine   scripts: {} }
+verbose caching /home/qbit/hud/node_modules/htmlparser/package.json
+verbose loadDefaults htmlparser@1.7.3
+info preinstall htmlparser@1.7.3
+silly testEngine { name: 'ejs',
+silly testEngine   description: 'Embedded JavaScript templates',
+silly testEngine   version: '0.4.3',
+silly testEngine   author: 
+silly testEngine    { name: 'TJ Holowaychuk',
+silly testEngine      email: 'tj@vision-media.ca' },
+silly testEngine   keywords: [ 'template', 'engine', 'ejs' ],
+silly testEngine   main: './lib/ejs.js',
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { file: '/home/qbit/hud/node_modules/ejs/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: false },
+silly testEngine   _id: 'ejs@0.4.3',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   engines: { node: '*' },
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.15',
+silly testEngine   _nodeVersion: 'v0.4.11',
+silly testEngine   _defaultsLoaded: true,
+silly testEngine   scripts: {} }
+verbose caching /home/qbit/hud/node_modules/ejs/package.json
+verbose loadDefaults ejs@0.4.3
+info preinstall ejs@0.4.3
+verbose linkStuff [ false, false, false, '/home/qbit/hud/node_modules' ]
+info linkStuff express@2.5.0
+verbose linkBins express@2.5.0
+verbose bins linking [ { express: './bin/express' },
+verbose bins linking   '/home/qbit/hud/node_modules/.bin',
+verbose bins linking   false ]
+verbose linkMans express@2.5.0
+verbose rebuildBundles express@2.5.0
+verbose linkStuff [ false, false, false, '/home/qbit/hud/node_modules' ]
+info linkStuff redis@0.6.7
+verbose linkBins redis@0.6.7
+verbose linkMans redis@0.6.7
+verbose rebuildBundles redis@0.6.7
+verbose linkStuff [ false, false, false, '/home/qbit/hud/node_modules' ]
+info linkStuff htmlparser@1.7.3
+verbose linkBins htmlparser@1.7.3
+verbose linkMans htmlparser@1.7.3
+verbose rebuildBundles htmlparser@1.7.3
+verbose linkStuff [ false, false, false, '/home/qbit/hud/node_modules' ]
+info linkStuff ejs@0.4.3
+verbose linkBins ejs@0.4.3
+verbose linkMans ejs@0.4.3
+verbose rebuildBundles ejs@0.4.3
+verbose rebuildBundles [ 'mkdirp', 'connect', 'mime', 'qs' ]
+info install redis@0.6.7
+info install htmlparser@1.7.3
+info install ejs@0.4.3
+info postinstall redis@0.6.7
+info postinstall htmlparser@1.7.3
+info postinstall ejs@0.4.3
+verbose mkdir done: /home/qbit/hud/node_modules/.bin 755
+ERR! Error: EPERM, Operation not permitted '/home/qbit/hud/node_modules/express/bin/express'
+ERR! 
+ERR! Please use 'sudo' or log in as root to run this command.
+ERR!     sudo npm "link" "ejs" "express" "htmlparser" "redis"
+ERR! or set the 'unsafe-perm' config var to true.
+ERR!     npm config set unsafe-perm true
+ERR! 
+ERR! System Linux 2.6.31.6-1
+ERR! command "node" "/usr/bin/npm" "link" "ejs" "express" "htmlparser" "redis"
+verbose exit [ 1, true ]
