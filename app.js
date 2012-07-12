@@ -1,7 +1,11 @@
+#!/usr/bin/env node
+
 var redis = require( "redis" ),
 	fs = require( 'fs' ),
 	client = redis.createClient(),
-	http = require( 'http' ),
+	// http = require( 'http' ),
+	https = require( 'https' ),
+	url = require( 'url' ),
 	express = require('express'),
 	app = module.exports = express.createServer();
 
@@ -73,7 +77,20 @@ function build_obj( res, req, skip_date_update ) {
 		hud_query = build_hud_query();
 	}
 
-	var http_req = http.get( hud_query, function( http_res ) {
+	var o = url.parse( hud_query );
+
+
+	o.port = 443;
+	o.headers = {
+		'User-Agent':	'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1201.0 Safari/537.1',
+		'Accept':	'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+		'Accept-Language':	'en-US',
+		'Accept-Charset':	'UTF-8,*;q=0.5'
+	};
+
+	console.error( o );
+	//var https_req = https.request( o, function( http_res ) {
+	var https_req = https.request( o, function( http_res ) {
 		console.log( "Status Code from HUD: %s", http_res.statusCode );
 		http_res.on( 'data', function( chunk ) {
 			data.push( chunk.toString() );
@@ -138,8 +155,9 @@ function build_obj( res, req, skip_date_update ) {
 				res.send( return_data );
 			}
 		});
-	});
-
+	}).on( 'error', function( e ) {
+		console.log( e );
+	}).end();
 };
 
 setTimeout( function() {
@@ -160,12 +178,17 @@ setTimeout( function() {
 function build_hud_query( obj ) {
 	var req_string = [];
 
-	var hud_opts = {
-		host: "www.hudhomestore.com",
-		path: "/pages/PortalHUDListExportToExcel.aspx",
-		port: 80,
-		method: 'GET'
-	};
+	//https://www.hudhomestore.com/Listing/PropertySearchResult.aspx?zipCode=&city=&county=&sState=CO&fromPrice=0&toPrice=0&caseNumber=&bed=0&bath=0&street=&buyerType=0&specialProgram=&Status=0
+	//openExport('../pages/ListExportToExcel.aspx?zipCode=&city=&county=&sState=CO&fromPrice=0&toPrice=0&fCaseNumber=&bed=0&bath=0&street=&buyerType=0&specialProgram=&Status=0');return
+	//false;
+	// var hud_opts = {
+		// host: "www.hudhomestore.com",
+		// path: "/Listing/PropertySearchResult.aspx",
+		// path: "/pages/ListExportToExcel.aspx"
+	// };
+
+	req_string.push( 'https://www.hudhomestore.com' );
+	req_string.push( '/pages/ListExportToExcel.aspx' );	
 
 	var count = 0;
 	for ( var o in url_opts) {
@@ -185,10 +208,7 @@ function build_hud_query( obj ) {
 		count++;
 	}
 
-	hud_opts.path = hud_opts.path + req_string.join( "" );
-	console.log( hud_opts.path );
-
-	return hud_opts 
+	return req_string.join( '' ).toString(); 
 }
 
 app.post( '/', function( req, res ) {
